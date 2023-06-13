@@ -4,7 +4,7 @@ html {
 }
 
 header {
-    display: inline;
+    display: inline-block;
 }
 
 h1 {

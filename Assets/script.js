@@ -1,0 +1,1 @@
+var timer = document.timer
