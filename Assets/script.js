@@ -2,13 +2,19 @@
 // timer starts when button is pressed
 //generatebtn
 
-var timerElement = document.querySelector("timer");
-var startButton = document.querySelector("startbutton");
+let timerElement = document.querySelector("#timer");
+let startButton = document.querySelector(".startButton");
+let quiz = document.querySelector(".questions");
 startButton.addEventListener("click", timerFunction);
 
+document.getElementById("card2").style.display = "none";
+document.getElementById("card3").style.display = "none";
+document.getElementById("card4").style.display = "none";
+document.getElementById("card5").style.display = "none";
+document.getElementById("card6").style.display = "none";
 
-var seconds = 0;
-var minutes = 0;
+let seconds = 0;
+let minutes = 0;
 
 function timerFunction() {
     seconds++;
@@ -17,18 +23,12 @@ function timerFunction() {
         seconds = 0;
         minutes++;
     }
-    if (minutes == 5) {
+    if (minutes == 2) {
         return;
     }
 
 timerElement.textContent = "Timer" + minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0");
 
 scoreScreen();
-}
-
-var quiz = document.querySelector(".questions");
-
-function quiz() {
-    
 }
 

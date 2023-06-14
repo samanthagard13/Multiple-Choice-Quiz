@@ -13,11 +13,20 @@ html {
 }
 
 .main {
-    
+    display: flex;
 }
 
 #card {
     justify-content: center;
+    align-items: center;
+}
+
+#card,
+#card2,
+#card3,
+#card4,
+#card5,
+#card6 {
     margin-top: 50px;
     border: 1px solid #ccc;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -43,7 +52,7 @@ p {
     align-items: center;
 }
 
-.startbutton {
+.startButton {
     font-size: xx-large;
     border-radius: 45px;
     padding: 20px;
@@ -54,5 +63,34 @@ p {
 }
 
 .questions {
+    display: flex;
     text-align: center;
+}
+
+#card2,
+#card3,
+#card4,
+#card5,
+#card6 {
+    justify-content: center;
+    align-items: center;
+    
+}
+
+h2 {
+    font-size: xx-large;
+}
+
+.input {
+    font-size: x-large;
+}
+
+.submitButton {
+    font-size: x-large;
+    border-radius: 45px;
+    padding: 20px;
+    background-color: rgb(130, 130, 252);
+    border-color: white;
+    color: white;
+    margin: 40px;
 }
