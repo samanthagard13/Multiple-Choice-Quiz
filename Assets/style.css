@@ -1,10 +1,14 @@
 html {
     background-color: rgb(244, 244, 244);
     font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
 }
 
-header {
-    display: inline-block;
+.header {
+    background-color: rgb(130, 130, 252);
+    padding: 10px;
+    margin: 0;
+    color: white;
 }
 
 h1 {
@@ -18,4 +22,23 @@ p {
     text-align: center;
     justify-content: center;
     font-size: x-large;
+}
+
+.buttonmiddle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.startbutton {
+    font-size: xx-large;
+    border-radius: 45px;
+    padding: 20px;
+    background-color: rgb(130, 130, 252);
+    border-color: white;
+    color: white;
+}
+
+.questions {
+    text-align: center;
 }
