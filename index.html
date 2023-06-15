@@ -9,53 +9,61 @@
 <body>
     <header class="header">
        <div id="scores">View HighScores</div>
-       <div id="timer">00:00</div>
+       <div id="timer">Timer 05:00</div>
     </header>
     <div class="main">
         <div id="card">
         <h1 id="title">Pop Quiz!</h1>
         <p>Time for a Coding Quiz!</p>
     <div class="buttonmiddle">
-        <button type="button" class="startButton">Start</button>
+        <button type="button" id="startbutton">Start</button>
     </div>
 </div>
-    </div>
+<div id="wronganswer">*WRONG ANSWER* -30 Seconds!</div>
+
     <div class="questions">
         <div id="card2">
-            <h2>question 1?</h2>
-            <form>
-                <input class="input" type="radio" name="question1" value="option">option
+            <h2>Which One Of These Logs To The Console?</h2>
+            <form id="form1">
+                <input class="input" type="radio" name="question1" value="consolelog.">consolelog.
+                <input class="input" type="radio" name="question1" value="console.log">console.log
+                <input class="input" type="radio" name="question1" value="consoleLog">consoleLog
+                <input class="input" type="radio" name="question1" value="none">none
                 <button type="submit" class="submitButton">Next</button>
             </form>
         </div>
         <div id="card3">
             <h2>question 2?</h2>
-            <form>
+            <form id="form2">
                 <input class="input" type="radio" name="question1" value="option">option
                 <button type="submit" class="submitButton">Next</button>
             </form>
         </div>
         <div id="card4">
             <h2>question 3?</h2>
-            <form>
+            <form id="form3">
                 <input class="input" type="radio" name="question1" value="option">option
                 <button type="submit" class="submitButton">Next</button>
             </form>
         </div>
         <div id="card5">
             <h2>question 4?</h2>
-            <form>
+            <form id="form4">
                 <input class="input" type="radio" name="question1" value="option">option
                 <button type="submit" class="submitButton">Next</button>
             </form>
         </div>
         <div id="card6">
             <h2>question 5?</h2>
-            <form>
+            <form id="form5">
                 <input class="input" type="radio" name="question1" value="option">option
                 <button type="submit" class="submitButton">Done!</button>
             </form>
         </div>
     </div>
+    </div>
+
+<script src="./Assets/script.js"></script>
+
 </body>
 </html>
