@@ -4,7 +4,7 @@ html {
     margin: 0;
     padding: 0;
 }
-
+/* MEnu Bar */
 .header {
     background-color: rgb(130, 130, 252);
     padding: 20px;
@@ -13,8 +13,19 @@ html {
     font-size: larger;
 }
 
+#scores {
+    margin: 0;
+    color: white;
+    font-size: larger; 
+    background-color:  rgb(130, 130, 252);
+    border: none;
+}
+
+/* Main Page */
+
 .main {
     display: flex;
+    justify-content: center;
 }
 
 #wronganswer {
@@ -22,7 +33,28 @@ html {
     display: none;
 }
 
+.highscores {
+    display: flex;
+    justify-content: center;
+}
+
 #card,
+#card7 {
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);   
+    width: 40%;
+}
+
+/* Quiz */
+
+.questions {
+    display: flex;
+    justify-content: center;
+}
+
 #card2,
 #card3,
 #card4,
@@ -30,16 +62,16 @@ html {
 #card6 {
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 30px;
     border: 1px solid #ccc;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);   
-    width: 40%;
+    width: 100%;
 }
 
 h1 {
     text-align: center;
     justify-content: center;
-    margin-top: 100px;
+    margin-top: 80px;
     font-size: xx-large;
 }
 
@@ -47,6 +79,7 @@ p {
     text-align: center;
     justify-content: center;
     font-size: x-large;
+    padding: 10px;
 }
 
 .buttonmiddle {
@@ -67,13 +100,27 @@ p {
 
 h2 {
     font-size: xx-large;
+    text-align: center;
+    justify-content: center;
+    margin-top: 100px;
+    padding: 40px;
 }
 
-.input {
+#form1 {
+    display: flex;
+    justify-content: center;
     font-size: x-large;
 }
 
-.submitButton {
+.input {
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+    padding: 40px;
+
+}
+
+.submitbutton {
     font-size: x-large;
     border-radius: 45px;
     padding: 20px;
@@ -87,6 +134,33 @@ h2 {
 #card3,
 #card4,
 #card5,
-#card6 {
+#card6,
+#card7 {
   display: none;
+}
+
+/* Scoreboard */
+
+#addscore {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+#initialsinput {
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border-radius: 45px;
+    font-size: larger;
+}
+
+#initialssubmit {
+    font-size: larger;
+    border-radius: 45px;
+    padding: 10px;
+    background-color: rgb(130, 130, 252);
+    border-color: white;
+    color: white;
 }

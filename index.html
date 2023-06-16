@@ -8,7 +8,7 @@
 </head>
 <body>
     <header class="header">
-       <div id="scores">View HighScores</div>
+       <button type="button" id="scores" src="#highscores">View Scoreboard</button>
        <div id="timer">Timer 05:00</div>
     </header>
     <div class="main">
@@ -29,39 +29,50 @@
                 <input class="input" type="radio" name="question1" value="console.log">console.log
                 <input class="input" type="radio" name="question1" value="consoleLog">consoleLog
                 <input class="input" type="radio" name="question1" value="none">none
-                <button type="submit" class="submitButton">Next</button>
+                <button type="submit" class="submitbutton">Next</button>
             </form>
         </div>
         <div id="card3">
             <h2>question 2?</h2>
             <form id="form2">
                 <input class="input" type="radio" name="question1" value="option">option
-                <button type="submit" class="submitButton">Next</button>
+                <button type="submit" class="submitbutton">Next</button>
             </form>
         </div>
         <div id="card4">
             <h2>question 3?</h2>
             <form id="form3">
                 <input class="input" type="radio" name="question1" value="option">option
-                <button type="submit" class="submitButton">Next</button>
+                <button type="submit" class="submitbutton">Next</button>
             </form>
         </div>
         <div id="card5">
             <h2>question 4?</h2>
             <form id="form4">
                 <input class="input" type="radio" name="question1" value="option">option
-                <button type="submit" class="submitButton">Next</button>
+                <button type="submit" class="submitbutton">Next</button>
             </form>
         </div>
         <div id="card6">
             <h2>question 5?</h2>
             <form id="form5">
                 <input class="input" type="radio" name="question1" value="option">option
-                <button type="submit" class="submitButton">Done!</button>
+                <button type="submit" class="submitbutton">Done!</button>
             </form>
         </div>
     </div>
     </div>
+
+    <div class="highscores">
+    <div id="card7">
+        <h2>- High Scores -</h2>
+            <p>list of initials and times</p>
+        <div id="addscore">
+            <input type="text" id="initialsinput" placeholder="Initials">
+            <button type="submit" id="initialssubmit">Submit</button>
+        </div>
+    </div>
+</div>
 
 <script src="./Assets/script.js"></script>
 

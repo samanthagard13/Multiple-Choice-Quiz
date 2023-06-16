@@ -1,7 +1,27 @@
 // Assignments for each section
 let timerElement = document.querySelector("#timer");
 let startButton = document.getElementById("startbutton");
+let mainMenu = document.querySelector(".main")
 let quiz = document.querySelector(".questions");
+let scoreBoard = document.getElementById("scores")
+
+/* Score Tracking and Display
+let score = 0
+let bestTime = 0
+
+function scoreScreen
+*/
+
+scoreBoard.addEventListener("click", scoreScreen); 
+
+function scoreScreen() {
+    card7.style.display = "block";
+    mainMenu.style.display = "none";
+    quiz.style.display = "none";
+
+    
+
+}
 
 // Timer Function
 startButton.addEventListener("click", startTimer);
@@ -22,17 +42,20 @@ function timerFunction() {
         minutes--;
     }
     if (minutes == 0 && seconds == 0) {
+        clearInterval(interval);
+        scoreScreen();
         return;
     }
 
 timerElement.textContent = "Timer " + minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0");
 
-scoreScreen();
+
 }
 
 // Page Switching Quiz/ Wrong answer time is added
 
-let alertMessage = document.getElementById("wronganswer")
+let alertMessage = document.getElementById("wronganswer");
+let submitButtton = document.querySelector("submitbutton");
 
 let card = document.getElementById("card");
 let card2 = document.getElementById("card2");
@@ -42,7 +65,7 @@ let card5 = document.getElementById("card5");
 let card6 = document.getElementById("card6");
 
 let question1 = document.getElementById("form1");
-let correctAnswer1 = document.getElementById("form1"[1])
+let correctAnswer1 = document.getElementById("form1"[1]);
 let question2 = document.getElementById("form2");
 let question3 = document.getElementById("form3");
 let question4 = document.getElementById("form4");
@@ -53,6 +76,8 @@ startButton.addEventListener("click", quizTime);
 function quizTime() {
     card.style.display = "none";
     card2.style.display = "block";
+
+
 
     if (selected === correctAnswer1) {
         score++;
@@ -67,9 +92,4 @@ function quizTime() {
 
 
 
-/* Score Tracking and Display
-let score = 0
-let bestTime = 0
 
-function scoreScreen
-*/
