@@ -1,26 +1,30 @@
-// Assignments for each section
+
 let timerElement = document.querySelector("#timer");
 let startButton = document.getElementById("startbutton");
 let mainMenu = document.querySelector(".main")
+
 let quiz = document.querySelector(".questions");
-let scoreBoard = document.getElementById("scores")
+let scoreBoard = document.getElementById("scores");
 
-/* Score Tracking and Display
-let score = 0
-let bestTime = 0
+// Score Tracking and Display
 
-function scoreScreen
-*/
+scoreBoard.addEventListener("click", scoreScreen);
 
-scoreBoard.addEventListener("click", scoreScreen); 
+let initialsInput = document.getElementById("initialsinput");
+let initialSubmit = document.getElementById("initialsubmit");
+let initialDisplay = document.getElementById("initialdisplay");
 
 function scoreScreen() {
     card7.style.display = "block";
     mainMenu.style.display = "none";
     quiz.style.display = "none";
 
-    
+initialSubmit.addEventListener("click", showList);
+}
 
+function showList() {
+    let response = initialsInput.value + " " + timerElement.content;
+    initialDisplay.textContent = response;
 }
 
 // Timer Function
@@ -32,6 +36,8 @@ let interval = null;
 
 function startTimer() {
     interval = setInterval(timerFunction, 1000);
+
+    timerFunction();
 }
 
 function timerFunction() {
@@ -41,7 +47,7 @@ function timerFunction() {
         seconds = 59;
         minutes--;
     }
-    if (minutes == 0 && seconds == 0) {
+    if (minutes === 0 && seconds === 0) {
         clearInterval(interval);
         scoreScreen();
         return;
@@ -65,11 +71,12 @@ let card5 = document.getElementById("card5");
 let card6 = document.getElementById("card6");
 
 let question1 = document.getElementById("form1");
-let correctAnswer1 = document.getElementById("form1"[1]);
 let question2 = document.getElementById("form2");
 let question3 = document.getElementById("form3");
 let question4 = document.getElementById("form4");
 let question5 = document.getElementById("form5");
+
+let correctAnswers = document.getElementById("form1"[1], "form2"[3]);
 
 startButton.addEventListener("click", quizTime);
 
@@ -77,18 +84,51 @@ function quizTime() {
     card.style.display = "none";
     card2.style.display = "block";
 
+    submitButtton.addEventListener("click", checkAnswer);
 
+}
 
-    if (selected === correctAnswer1) {
-        score++;
+function nextQuestion() {
+    card2.style.display = "none";
+    card3.style.display = "block";
+
+    submitButtton.addEventListener("click", checkAnswer);
+
     }
-    if (selected === incorrectAnswer) {
+
+function nextQuestion() {
+    card3.style.display = "none";
+    card4.style.display = "block";
+
+    submitButtton.addEventListener("click", checkAnswer);
+
+    }
+
+function nextQuestion() {
+
+    card4.style.display = "none";
+    card5.style.display = "block";
+
+    submitButtton.addEventListener("click", checkAnswer);
+    }
+
+function nextQuestion() {
+    card5.style.display = "none";
+    card6.style.display = "block";
+
+    submitButtton.addEventListener("click", checkAnswer);
+
+    scoreScreen();
+    }
+
+function checkAnswer() {
+    if (question1.checked && correctAnswer.checked.length) {
+        nextQuestion();
+    } else {
         seconds= -30;
         alertMessage.style.display = "block";
     }
 }
-
-
 
 
 
