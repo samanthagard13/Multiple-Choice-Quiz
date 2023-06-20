@@ -59,7 +59,7 @@ timerElement.textContent = "Timer " + minutes.toString().padStart(2, "0") + ":" 
 // Page Switching Quiz/ Wrong answer time is added
 let quiz = document.querySelector(".questions");
 let alertMessage = document.getElementById("wronganswer");
-let submitButtton = document.querySelector("submitbutton");
+let submitButtton = document.querySelector(".submitbutton");
 
 let card = document.getElementById("card");
 let card2 = document.getElementById("card2");
@@ -74,11 +74,17 @@ let question3 = document.getElementById("form3");
 let question4 = document.getElementById("form4");
 let question5 = document.getElementById("form5");
 
-let correctAnswers = document.getElementById("form1"[1], "form2"[3]);
+let answer1 = document.getElementById("correctAnswer1");
+let answer2 = document.getElementById("correctAnswer2");
+let answer3 = document.getElementById("correctAnswer3");
+let answer4 = document.getElementById("correctAnswer4");
+let answer5 = document.getElementById("correctAnswer5");
+
+let correctAnswersArray = [answer1, answer2, answer3, answer4, answer5];
 
 startButton.addEventListener("click", quizTime);
 
-function quizTime() { {
+function quizTime() {
     card.style.display = "none";
     card2.style.display = "block";
 
@@ -86,7 +92,7 @@ function quizTime() { {
 
 };
 
-function nextQuestion() {
+function nextQuestion1() {
     card2.style.display = "none";
     card3.style.display = "block";
 
@@ -94,7 +100,7 @@ function nextQuestion() {
 
     };
 
-function nextQuestion() {
+function nextQuestion2() {
     card3.style.display = "none";
     card4.style.display = "block";
 
@@ -102,7 +108,7 @@ function nextQuestion() {
 
     };
 
-function nextQuestion() {
+function nextQuestion3() {
 
     card4.style.display = "none";
     card5.style.display = "block";
@@ -110,7 +116,7 @@ function nextQuestion() {
     submitButtton.addEventListener("click", checkAnswer);
     };
 
-function nextQuestion() {
+function nextQuestion4() {
     card5.style.display = "none";
     card6.style.display = "block";
 
@@ -119,13 +125,17 @@ function nextQuestion() {
     scoreScreen();
     };
 
-function checkAnswer() {
+let questionsArray = [nextQuestion1, nextQuestion2, nextQuestion3, nextQuestion4];
+
+function checkAnswer(event) {
+    event.preventDefault()
+    for(let i=0; i < questionsArray.length; i++) {
     if (question1.checked && correctAnswer.checked.length) {
-        nextQuestion();
+        console.log("correct");
     } else {
         seconds= -30;
         alertMessage.style.display = "block";
-        nextQuestion();
+        console.log("false");
     }
 }
 }
