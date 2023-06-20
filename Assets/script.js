@@ -1,12 +1,9 @@
 
-let timerElement = document.querySelector("#timer");
-let startButton = document.getElementById("startbutton");
-let mainMenu = document.querySelector(".main")
-
-let quiz = document.querySelector(".questions");
-let scoreBoard = document.getElementById("scores");
+let mainMenu = document.querySelector(".main");
 
 // Score Tracking and Display
+
+let scoreBoard = document.getElementById("scores");
 
 scoreBoard.addEventListener("click", scoreScreen);
 
@@ -20,14 +17,17 @@ function scoreScreen() {
     quiz.style.display = "none";
 
 initialSubmit.addEventListener("click", showList);
-}
+};
 
 function showList() {
     let response = initialsInput.value + " " + timerElement.content;
     initialDisplay.textContent = response;
-}
+};
 
 // Timer Function
+let timerElement = document.querySelector("#timer");
+let startButton = document.getElementById("startbutton");
+
 startButton.addEventListener("click", startTimer);
 
 let seconds = 59;
@@ -38,7 +38,7 @@ function startTimer() {
     interval = setInterval(timerFunction, 1000);
 
     timerFunction();
-}
+};
 
 function timerFunction() {
     seconds--;
@@ -54,12 +54,10 @@ function timerFunction() {
     }
 
 timerElement.textContent = "Timer " + minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0");
-
-
-}
+};
 
 // Page Switching Quiz/ Wrong answer time is added
-
+let quiz = document.querySelector(".questions");
 let alertMessage = document.getElementById("wronganswer");
 let submitButtton = document.querySelector("submitbutton");
 
@@ -80,13 +78,13 @@ let correctAnswers = document.getElementById("form1"[1], "form2"[3]);
 
 startButton.addEventListener("click", quizTime);
 
-function quizTime() {
+function quizTime() { {
     card.style.display = "none";
     card2.style.display = "block";
 
     submitButtton.addEventListener("click", checkAnswer);
 
-}
+};
 
 function nextQuestion() {
     card2.style.display = "none";
@@ -94,7 +92,7 @@ function nextQuestion() {
 
     submitButtton.addEventListener("click", checkAnswer);
 
-    }
+    };
 
 function nextQuestion() {
     card3.style.display = "none";
@@ -102,7 +100,7 @@ function nextQuestion() {
 
     submitButtton.addEventListener("click", checkAnswer);
 
-    }
+    };
 
 function nextQuestion() {
 
@@ -110,7 +108,7 @@ function nextQuestion() {
     card5.style.display = "block";
 
     submitButtton.addEventListener("click", checkAnswer);
-    }
+    };
 
 function nextQuestion() {
     card5.style.display = "none";
@@ -119,7 +117,7 @@ function nextQuestion() {
     submitButtton.addEventListener("click", checkAnswer);
 
     scoreScreen();
-    }
+    };
 
 function checkAnswer() {
     if (question1.checked && correctAnswer.checked.length) {
@@ -127,7 +125,9 @@ function checkAnswer() {
     } else {
         seconds= -30;
         alertMessage.style.display = "block";
+        nextQuestion();
     }
+}
 }
 
 
