@@ -1,92 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./Assets/style.css">
     <title>Pop Quiz!</title>
 </head>
+
 <body>
     <header class="header">
-       <button type="button" id="scores" src="#highscores">View Scoreboard</button>
-       <div id="timer">Timer 05:00</div>
+        <button type="button" id="scores" src="#highscores">View Scoreboard</button>
+        <div id="timer">Timer 05:00</div>
     </header>
+
+<div id="answeralert">*WRONG ANSWER* -30 Seconds!</div>
+
+<div id="cards">
+
+<div id="card">
     <div class="main">
-        <div id="card">
-        <h1 id="title">Pop Quiz!</h1>
-        <p>Time for a Coding Quiz!</p>
-    <div class="buttonmiddle">
-        <button type="button" id="startbutton">Start</button>
+        <h1>Time For A Coding Quiz!</h1>
+        <p>Answer Correctly Or Lose 30 Seconds!
+            <br>
+            <br>
+            Save Your Score At The End!</p>
+        <div class="buttons">
+            <button type="button" id="startbutton">Start</button>
+        </div>
     </div>
 </div>
-<div id="wronganswer">*WRONG ANSWER* -30 Seconds!</div>
 
-    <div class="questions">
-        <div id="card2">
-            <h2>Which One Of These Logs To The Console?</h2>
-            <form id="form1">
-                <input class="input" type="radio" name="question1" value="consolelog.">consolelog.
-                <input class="input" id="correctAnswer1" type="radio" name="question1" value="console.log">console.log
-                <input class="input" type="radio" name="question1" value="consoleLog">consoleLog
-                <input class="input" type="radio" name="question1" value="none">none
-                <button type="submit" class="submitbutton">Next</button>
-            </form>
-        </div>
-        <div id="card3">
-            <h2>Which One Of These Sends Files To GitHub?</h2>
-            <form id="form2">
-                <input class="input" type="radio" name="question2" value="git shove">git shove
-                <input class="input" type="radio" name="question2" value="git jump">git jump
-                <input class="input" type="radio" name="question2" value="git get">git get
-                <input class="input" id="correctAnswer2" type="radio" name="question2" value="git push">git push
-                <input class="input" type="radio" name="question2" value="none">none
-                <button type="submit" class="submitbutton">Next</button>
-            </form>
-        </div>
-        <div id="card4">
-            <h2>What Command Shows You Every File In Your Current Directory?</h2>
-            <form id="form3">
-                <input class="input" type="radio" name="question3" value="ul">ul
-                <input class="input" type="radio" name="question3" value="il">il
-                <input class="input" id="correctAnswer3" type="radio" name="question3" value="ls">ls
-                <input class="input" type="radio" name="question3" value="lu">lu
-                <input class="input" type="radio" name="question3" value="none">none
-                <button type="submit" class="submitbutton">Next</button>
-            </form>
-        </div>
-        <div id="card5">
-            <h2>question 4?</h2>
-            <form id="form4">
-                <input class="input" type="radio" name="question1" value="option">option
-                <button type="submit" class="submitbutton">Next</button>
-            </form>
-        </div>
-        <div id="card6">
-            <h2>question 5?</h2>
-            <form id="form5">
-                <input class="input" type="radio" name="question1" value="option">option
-                <button type="submit" class="submitbutton">Done!</button>
-            </form>
-        </div>
+<div id="questionscard">
+    <div class="questionbox">
+        <h2><span id="questionTitle">Question</span></h2>
+        <ul>
+            <li><button class="choices" type="button"><span id="choice1">Choice1</span></button></li>
+            <li><button class="choices" type="button"><span id="choice2">Choice2</span></button></li>
+            <li><button class="choices" type="button"><span id="choice3">Choice3</span></button></li>
+            <li><button class="choices" type="button"><span id="choice4">Choice4</span></button></li>
+        </ul>
     </div>
+</div>
+
+<div id="scorecard">
+    <div id="addscore">
+        <input type="text" id="initialsinput" placeholder=" Initials">
+            <button type="submit" id="initialssubmit">Submit</button>
     </div>
 
     <div class="highscores">
-    <div id="card7">
-        <h2>- High Scores -</h2>
-        <ul id="initialdisplay">
-            <li>1.</li>
-            <li>2.</li>
-            <li>3.</li>
+        <h2> High Scores </h2>
+        <ul>
+            <li><span id="initialdisplay">1.</span></li>
+            <li><span id="initialdisplay2">2.</span></li>
+            <li><span id="initialdisplay3">3.</span></li>
         </ul>
-        <div id="addscore">
-            <input type="text" id="initialsinput" placeholder=" Initials">
-            <button type="submit" id="initialssubmit">Submit</button>
-        </div>
     </div>
+</div>
 </div>
 
 <script src="./Assets/script.js"></script>
 
 </body>
+
 </html>

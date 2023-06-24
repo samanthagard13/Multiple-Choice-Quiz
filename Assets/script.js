@@ -1,38 +1,78 @@
-
-let mainMenu = document.querySelector(".main");
-
-// Score Tracking and Display
-
+let startButton = document.getElementById("startbutton");
+let timerElement = document.querySelector("#timer");
+let time = localStorage.getItem("time");
+let mainMenu = document.getElementById("card");
 let scoreBoard = document.getElementById("scores");
-
-scoreBoard.addEventListener("click", scoreScreen);
-
+let scoreCard = document.getElementById("scorecard");
+let addScore = document.getElementById("addscore");
 let initialsInput = document.getElementById("initialsinput");
 let initialSubmit = document.getElementById("initialsubmit");
 let initialDisplay = document.getElementById("initialdisplay");
-
-function scoreScreen() {
-    card7.style.display = "block";
-    mainMenu.style.display = "none";
-    quiz.style.display = "none";
-
-initialSubmit.addEventListener("click", showList);
-};
-
-function showList() {
-    let response = initialsInput.value + " " + timerElement.content;
-    initialDisplay.textContent = response;
-};
-
-// Timer Function
-let timerElement = document.querySelector("#timer");
-let startButton = document.getElementById("startbutton");
-
-startButton.addEventListener("click", startTimer);
-
+let questionTitle = document.getElementById("questionTitle");
+let questionsCard = document.getElementById("questionscard");
 let seconds = 59;
 let minutes = 4;
 let interval = null;
+let questionsArray = [
+    "Which One Of These Logs To The Console?",
+    "Which One Of These Sends Files To GitHub?",
+    "What Command Shows You Every File In Your Current Directory?",
+    "How Do You Add A Paragraph Element To HTML?",
+    "What Word Can You Use To Declare A Variable In JavaScript?"];
+let currentQuestionIndex = 0;
+let choice1Array = ["1. consolelog.", "1. git shove", "1. ul", "1. <p>", "1. let"];
+let choice2Array = ["2. console.log", "2. git jump", "2. il", "2. <P>", "2. var"];
+let choice3Array = ["3. consoleLog", "3. git push", "3. ls", "3. <par>", "3. const"];
+let choice4Array = ["4. None", "4. None", "4. None", "4. None", "4. All Of The Above"];
+let correctAnswers = ["2. console.log", "3. git push", "3. ls", "2. <p>", "4. All Of The Above"];
+let choice1Index = 0;
+let choice2Index = 0;
+let choice3Index = 0;
+let choice4Index = 0;
+let options = document.querySelector(".choices");
+let alertMessage = document.querySelector("#answeralert");
+
+function startQuiz() {
+mainMenu.style.display = "none";
+questionsCard.style.display = "block";
+ nextQuestion();
+ startTimer();
+}
+
+function nextQuestion() {
+event.preventDefault()
+alertMessage.style.display = "none";
+//display first question of array
+questionTitle.textContent = questionsArray[currentQuestionIndex];
+//display first of all answer array
+choice1.textContent = choice1Array[currentQuestionIndex];
+choice2.textContent = choice2Array[currentQuestionIndex];
+choice3.textContent = choice3Array[currentQuestionIndex];
+choice4.textContent = choice4Array[currentQuestionIndex];
+
+    if (options.selected === correctAnswers[currentQuestionIndex]) {
+       currentQuestionIndex++;
+       choice1Index++;
+       choice2Index++;
+       choice3Index++;
+       choice4Index++;
+    } else {
+        seconds -= 30;
+        alertMessage.style.display = "block";
+        currentQuestionIndex++;
+        choice1Index++;
+        choice2Index++;
+        choice3Index++;
+        choice4Index++;
+    }
+
+    if (minutes === 0 && seconds == 0) {
+        addInitials();
+    }
+    if (currentQuestionIndex == 5) {
+        addInitials();
+    }
+}
 
 function startTimer() {
     interval = setInterval(timerFunction, 1000);
@@ -43,103 +83,33 @@ function startTimer() {
 function timerFunction() {
     seconds--;
 
-    if (seconds == 0) {
+    if (seconds === 0) {
         seconds = 59;
         minutes--;
     }
     if (minutes === 0 && seconds === 0) {
         clearInterval(interval);
-        scoreScreen();
+        addInitials();
         return;
     }
 
 timerElement.textContent = "Timer " + minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0");
 };
 
-// Page Switching Quiz/ Wrong answer time is added
-let quiz = document.querySelector(".questions");
-let alertMessage = document.getElementById("wronganswer");
-let submitButtton = document.querySelector(".submitbutton");
+function addInitials() {
+    addScore.style.display = "block";
+    initialSubmit.addEventListener("click", scoreScreen);
+}
 
-let card = document.getElementById("card");
-let card2 = document.getElementById("card2");
-let card3 = document.getElementById("card3");
-let card4 = document.getElementById("card4");
-let card5 = document.getElementById("card5");
-let card6 = document.getElementById("card6");
-
-let question1 = document.getElementById("form1");
-let question2 = document.getElementById("form2");
-let question3 = document.getElementById("form3");
-let question4 = document.getElementById("form4");
-let question5 = document.getElementById("form5");
-
-let answer1 = document.getElementById("correctAnswer1");
-let answer2 = document.getElementById("correctAnswer2");
-let answer3 = document.getElementById("correctAnswer3");
-let answer4 = document.getElementById("correctAnswer4");
-let answer5 = document.getElementById("correctAnswer5");
-
-let correctAnswersArray = [answer1, answer2, answer3, answer4, answer5];
-
-startButton.addEventListener("click", quizTime);
-
-function quizTime() {
-    card.style.display = "none";
-    card2.style.display = "block";
-
-    submitButtton.addEventListener("click", checkAnswer);
-
+function scoreScreen() {
+    scoreCard.style.display = "block";
+    mainMenu.style.display = "none";
+    questionsCard.style.display = "none";
+    addScore.style.display = "none";
+    let response = initialsInput.value;
+    initialDisplay.textContent = response + " " + timerElement.textContent;
+    // add to previous list
 };
 
-function nextQuestion1() {
-    card2.style.display = "none";
-    card3.style.display = "block";
-
-    submitButtton.addEventListener("click", checkAnswer);
-
-    };
-
-function nextQuestion2() {
-    card3.style.display = "none";
-    card4.style.display = "block";
-
-    submitButtton.addEventListener("click", checkAnswer);
-
-    };
-
-function nextQuestion3() {
-
-    card4.style.display = "none";
-    card5.style.display = "block";
-
-    submitButtton.addEventListener("click", checkAnswer);
-    };
-
-function nextQuestion4() {
-    card5.style.display = "none";
-    card6.style.display = "block";
-
-    submitButtton.addEventListener("click", checkAnswer);
-
-    scoreScreen();
-    };
-
-let questionsArray = [nextQuestion1, nextQuestion2, nextQuestion3, nextQuestion4];
-
-function checkAnswer(event) {
-    event.preventDefault()
-    for(let i=0; i < questionsArray.length; i++) {
-    if (question1.checked && correctAnswer.checked.length) {
-        console.log("correct");
-    } else {
-        seconds= -30;
-        alertMessage.style.display = "block";
-        console.log("false");
-    }
-}
-}
-
-
-
-
+scoreBoard.addEventListener("click", scoreScreen);
+startButton.addEventListener("click", startQuiz);
