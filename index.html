@@ -11,10 +11,12 @@
 <body>
     <header class="header">
         <button type="button" id="scores" src="#highscores">View Scoreboard</button>
-        <div id="timer">Timer 05:00</div>
+        <div id="timer">Timer 03:00</div>
     </header>
 
-<div id="answeralert">*WRONG ANSWER* -30 Seconds!</div>
+<div id="alert">
+    <div id="answeralert">*WRONG ANSWER*  - 30 Seconds!</div>
+</div>
 
 <div id="cards">
 
@@ -45,12 +47,14 @@
 
 <div id="scorecard">
     <div id="addscore">
+        <h2>Add Your Initials To The Scoreboard!</h2>
         <input type="text" id="initialsinput" placeholder=" Initials">
-            <button type="submit" id="initialssubmit">Submit</button>
+        <br>
+        <button type="submit" id="initialssubmit">Submit</button>
     </div>
 
     <div class="highscores">
-        <h2> High Scores </h2>
+        <h2 id="scoreheader"> High Scores </h2>
         <ul>
             <li><span id="initialdisplay">1.</span></li>
             <li><span id="initialdisplay2">2.</span></li>
