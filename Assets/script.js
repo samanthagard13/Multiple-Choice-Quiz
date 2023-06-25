@@ -9,6 +9,8 @@ let highscores = document.querySelector(".highscores");
 let initialsInput = document.getElementById("initialsinput");
 let initialsSubmit = document.getElementById("initialssubmit");
 let initialDisplay = document.getElementById("initialdisplay");
+var initialsArray = [];
+var timeArray = [];
 let questionTitle = document.getElementById("questionTitle");
 let questionsCard = document.getElementById("questionscard");
 let seconds = 60;
@@ -48,7 +50,7 @@ nextQuestion();
 };
 
 function nextQuestion() {
-    event.preventDefault()
+    event.preventDefault();
     questionTitle.textContent = questionsArray[currentQuestionIndex];
     choice1.textContent = choice1Array[currentQuestionIndex];
     choice2.textContent = choice2Array[currentQuestionIndex];
@@ -130,6 +132,9 @@ function addInitials() {
 };
 
 function scoreScreen() {
+    event.preventDefault();
+    initialsArray = localStorage.getItem("initialsArray");
+    timeArray = localStorage.getItem("timeArray");
     console.log("buttonworks");
     scoreCard.style.display = "block";
     highscores.style.display = "block";
@@ -139,13 +144,14 @@ function scoreScreen() {
     let time = localStorage.getItem("time");
     timerElement.textContent = "Time Left: " + time;
     let response = initialsInput.value;
+    initialsArray.push(response);
+    timeArray.push(time);
+    localStorage.setItem("initialsArray");
+    localStorage.setItem("timeArray");
     initialDisplay.textContent = response + " " + timerElement.textContent;
     localStorage.setItem("initials", response);
     localStorage.setItem("time", time);
-
-
 };
-
 
 scoreBoard.addEventListener("click", scoreScreen);
 startButton.addEventListener("click", startQuiz);
