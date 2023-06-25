@@ -142,6 +142,8 @@ function scoreScreen() {
     initialDisplay.textContent = response + " " + timerElement.textContent;
     localStorage.setItem("initials", response);
     localStorage.setItem("time", time);
+
+
 };
 
 
