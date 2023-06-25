@@ -25,13 +25,20 @@ let choice1Array = [" consolelog. ", " git shove ", " ul ", " <p> ", " let "];
 let choice2Array = [" console.log ", " git jump ", " il ", " <P> ", " var "];
 let choice3Array = [" consoleLog ", " git push ", " ls ", " <par> ", " const "];
 let choice4Array = [" None ", " None ", " None ", " None ", " All Of The Above "];
-let correctAnswers = [" console.log ", " git push ", " ls ", " <p> ", " All Of The Above "];
+let correctAnswers = ["console.log", "git push", "ls", "<p>", "All Of The Above"];
 let choice1Index = 0;
 let choice2Index = 0;
 let choice3Index = 0;
 let choice4Index = 0;
 let options = document.querySelectorAll(".choices");
 let alertMessage = document.querySelector("#answeralert");
+
+let savedInitials = localStorage.getItem("initials");
+let savedTime = localStorage.getItem("time");
+
+if (savedInitials && savedTime) {
+    initialDisplay.textContent = savedInitials + " Time Left: " + savedTime;
+}
 
 function startQuiz() {
 mainMenu.style.display = "none";
@@ -66,7 +73,6 @@ function checkAnswer(event) {
         choice3Index++;
         choice4Index++;
         console.log("working2")
-        nextQuestion();
     } else {
         alertMessage.style.display = "block";
         seconds -= 30;
@@ -79,7 +85,7 @@ function checkAnswer(event) {
 
         setTimeout(function() {
             alertMessage.style.display = "none";
-        }, 3000);
+        }, 1500);
     }
     nextQuestion();
 };
@@ -103,16 +109,13 @@ function timerFunction() {
         return;
     }
 
-timerElement.textContent = "Timer " + minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0");
+timerElement.textContent = minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0");
 
-    if (minutes === 0 && seconds == 0) {
-        clearInterval(interval);
-        addInitials();
-    }
     if (currentQuestionIndex >= 5) {
         localStorage.setItem("time", timerElement.textContent);
         clearInterval(interval);
         addInitials();
+        return;
     }
 };
 
@@ -127,6 +130,8 @@ function addInitials() {
 };
 
 function scoreScreen() {
+    console.log("buttonworks");
+    scoreCard.style.display = "block";
     highscores.style.display = "block";
     mainMenu.style.display = "none";
     questionsCard.style.display = "none";
@@ -135,7 +140,10 @@ function scoreScreen() {
     timerElement.textContent = "Time Left: " + time;
     let response = initialsInput.value;
     initialDisplay.textContent = response + " " + timerElement.textContent;
+    localStorage.setItem("initials", response);
+    localStorage.setItem("time", time);
 };
+
 
 scoreBoard.addEventListener("click", scoreScreen);
 startButton.addEventListener("click", startQuiz);

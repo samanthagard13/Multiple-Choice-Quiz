@@ -145,11 +145,11 @@ h2 {
 }
 
 #initialsinput {
-    justify-content: center;
-    align-items: center;
+    width: 150px;
     padding: 5px;
     border-radius: 45px;
     font-size: larger;
+    margin-left: 60px;
 }
 
 #initialsinput:focus {
@@ -158,8 +158,7 @@ h2 {
 }
 
 #initialssubmit {
-    justify-content: center;
-    align-items: center;
+    margin-left: 30px;
     font-size: larger;
     border-radius: 45px;
     padding: 10px;
@@ -175,7 +174,3 @@ h2 {
         width: 80%;
     }
 } 
-
-@media screen and (max-width: 576px) {
-
-}
