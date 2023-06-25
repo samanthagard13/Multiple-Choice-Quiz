@@ -9,8 +9,6 @@ let highscores = document.querySelector(".highscores");
 let initialsInput = document.getElementById("initialsinput");
 let initialsSubmit = document.getElementById("initialssubmit");
 let initialDisplay = document.getElementById("initialdisplay");
-var initialsArray = [];
-var timeArray = [];
 let questionTitle = document.getElementById("questionTitle");
 let questionsCard = document.getElementById("questionscard");
 let seconds = 60;
@@ -34,12 +32,12 @@ let choice3Index = 0;
 let choice4Index = 0;
 let options = document.querySelectorAll(".choices");
 let alertMessage = document.querySelector("#answeralert");
+let frontPage = document.getElementById("frontpage");
+let clearList = document.getElementById("clearlist");
 
-let savedInitials = localStorage.getItem("initials");
-let savedTime = localStorage.getItem("time");
-
-if (savedInitials && savedTime) {
-    initialDisplay.textContent = savedInitials + " Time Left: " + savedTime;
+function Home() {
+    mainMenu.style.display = "block";
+    scoreCard.style.display = "none";
 }
 
 function startQuiz() {
@@ -67,7 +65,7 @@ function checkAnswer(event) {
     var selectedAnswer = event.target.innerText.trim();
     var correctAnswer = correctAnswers[currentQuestionIndex];
     console.log(event.target.innerText);
-    
+
     if (selectedAnswer === correctAnswer) {
         currentQuestionIndex++;
         choice1Index++;
@@ -131,10 +129,11 @@ function addInitials() {
     initialsSubmit.addEventListener("click", scoreScreen);
 };
 
+const initialsArray = JSON.parse(localStorage.getItem("initialsArray")) || [];
+const timeArray = JSON.parse(localStorage.getItem("timeArray")) || [];
+
 function scoreScreen() {
     event.preventDefault();
-    initialsArray = localStorage.getItem("initialsArray");
-    timeArray = localStorage.getItem("timeArray");
     console.log("buttonworks");
     scoreCard.style.display = "block";
     highscores.style.display = "block";
@@ -142,16 +141,42 @@ function scoreScreen() {
     questionsCard.style.display = "none";
     addScore.style.display = "none";
     let time = localStorage.getItem("time");
-    timerElement.textContent = "Time Left: " + time;
     let response = initialsInput.value;
     initialsArray.push(response);
     timeArray.push(time);
-    localStorage.setItem("initialsArray");
-    localStorage.setItem("timeArray");
+    localStorage.setItem("initialsArray", JSON.stringify(initialsArray));
+    localStorage.setItem("timeArray", JSON.stringify(timeArray));
+    timerElement.textContent = "Time Left: " + time;
     initialDisplay.textContent = response + " " + timerElement.textContent;
     localStorage.setItem("initials", response);
     localStorage.setItem("time", time);
+    populateList();
 };
+
+function populateList() {
+    const scoreList = document.getElementById("scorelist");
+    scoreList.innerHTML = "";
+
+    const maxLength = Math.min(initialsArray.length, 5);
+
+    for (let i = maxLength - 1; i >= 0; i--) {
+        const listItem = document.createElement("li");
+        const initialsTime = initialsArray[i] + " - " + timeArray[i];
+        listItem.textContent = initialsTime;
+        scoreList.appendChild(listItem);
+        console.log(initialsTime);
+    }
+};
+
+function clearScores () {
+    localStorage.removeItem("initialsArray");
+    localStorage.removeItem("timeArray");
+    initialsArray.length = 0;
+    timeArray.length = 0;
+    populateList();
+}
 
 scoreBoard.addEventListener("click", scoreScreen);
 startButton.addEventListener("click", startQuiz);
+frontPage.addEventListener("click", Home);
+clearList.addEventListener("click", clearScores);

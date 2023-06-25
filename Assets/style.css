@@ -97,6 +97,7 @@ li {
     justify-content: center;
     font-size: x-large;
     padding: 10px;
+    margin-right: 20px;
 }
 
 .buttons {
@@ -159,6 +160,20 @@ h2 {
 
 #initialssubmit {
     margin-left: 30px;
+    font-size: larger;
+    border-radius: 45px;
+    padding: 10px;
+    background-color: rgb(130, 130, 252);
+    border-color: white;
+    color: white;
+}
+
+#frontpage,
+#clearlist {
+    justify-content: center;
+    align-items: center;
+    margin-left: 40px;
+    margin-bottom: 20px;
     font-size: larger;
     border-radius: 45px;
     padding: 10px;
