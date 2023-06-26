@@ -31,7 +31,8 @@ let choice2Index = 0;
 let choice3Index = 0;
 let choice4Index = 0;
 let options = document.querySelectorAll(".choices");
-let alertMessage = document.querySelector("#answeralert");
+let alertMessage = document.getElementById("answeralert");
+let correctAlertMessage = document.getElementById("answeralert2")
 let frontPage = document.getElementById("frontpage");
 let clearList = document.getElementById("clearlist");
 
@@ -45,17 +46,30 @@ function Home() {
     seconds = 60;
     minutes = 2;
     timerElement.textContent = "Timer 03:00";
+    Replay();
+    function Replay() {
+        startButton.addEventListener("click", startQuiz);
+    };
 };
 
 function startQuiz() {
     mainMenu.style.display = "none";
     questionsCard.style.display = "block";
+    addScore.style.display = "none";
     startTimer();
     nextQuestion();
 };
 
 function nextQuestion() {
     event.preventDefault();
+    if (currentQuestionIndex === 5) {
+        questionsCard.style.display = "none";
+        localStorage.setItem("time", timerElement.textContent);
+        clearInterval(interval);
+        addInitials();
+        return;
+    }
+    
     questionTitle.textContent = questionsArray[currentQuestionIndex];
     choice1.textContent = choice1Array[currentQuestionIndex];
     choice2.textContent = choice2Array[currentQuestionIndex];
@@ -74,14 +88,22 @@ function checkAnswer(event) {
     console.log(event.target.innerText);
 
     if (selectedAnswer === correctAnswer) {
+        correctAlertMessage.style.display = "block";
+        alertMessage.style.display = "none";
         currentQuestionIndex++;
         choice1Index++;
         choice2Index++;
         choice3Index++;
         choice4Index++;
         console.log("working2")
+
+        setTimeout(function() {
+        correctAlertMessage.style.display = "none";
+    }, 1000);
+
     } else {
         alertMessage.style.display = "block";
+        correctAlertMessage.style.display = "none";
         seconds -= 30;
         currentQuestionIndex++;
         choice1Index++;
@@ -92,7 +114,7 @@ function checkAnswer(event) {
 
         setTimeout(function() {
             alertMessage.style.display = "none";
-        }, 1500);
+        }, 1050);
     }
     nextQuestion();
 };
@@ -109,21 +131,15 @@ function timerFunction() {
     if (seconds <= 0) {
         seconds = 59;
         minutes--;
-    }
-    if (minutes <= 0 && seconds <= 0) {
+    } else if (time === 0) {
         clearInterval(interval);
         addInitials();
         return;
     }
+    
 
 timerElement.textContent = "Timer " + minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0");
 
-    if (currentQuestionIndex >= 5) {
-        localStorage.setItem("time", timerElement.textContent);
-        clearInterval(interval);
-        addInitials();
-        return;
-    }
 };
 
 function addInitials() {
@@ -135,6 +151,10 @@ function addInitials() {
     questionsCard.style.display = "none";
     mainMenu.style.display = "none";
     initialsSubmit.addEventListener("click", scoreScreen);
+    localStorage.setItem("initials", response);
+    localStorage.setItem("time", time);
+    
+    
 };
 
 const initialsArray = JSON.parse(localStorage.getItem("initialsArray")) || [];
@@ -152,15 +172,14 @@ function scoreScreen() {
     mainMenu.style.display = "none";
     questionsCard.style.display = "none";
     addScore.style.display = "none";
-    let time = localStorage.getItem("time");
+    const time = localStorage.getItem("time");
     let response = initialsInput.value;
     initialsArray.push(response);
     timeArray.push(time);
     localStorage.setItem("initialsArray", JSON.stringify(initialsArray));
     localStorage.setItem("timeArray", JSON.stringify(timeArray));
     initialDisplay.textContent = response + " " + timerElement.textContent;
-    localStorage.setItem("initials", response);
-    localStorage.setItem("time", time);
+      
     populateList();
 };
 
@@ -187,7 +206,7 @@ function clearScores () {
     populateList();
 };
 
-scoreBoard.addEventListener("click", scoreScreen);
+scoreBoard.addEventListener("click", populateList);
 startButton.addEventListener("click", startQuiz);
 frontPage.addEventListener("click", Home);
 clearList.addEventListener("click", clearScores);

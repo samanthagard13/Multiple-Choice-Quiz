@@ -8,6 +8,7 @@ html {
 .header {
     background-color: rgb(130, 130, 252);
     padding: 20px;
+    border: none;
     color: white;
 }
 
@@ -28,11 +29,20 @@ html {
     justify-content: center;
 }
 #answeralert {
-    color: red;
+    color: rgb(240, 41, 41);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    font-weight: 600;
+}
+#answeralert2 {
+    color: rgb(0, 156, 0);
     display: none;
     justify-content: center;
     align-items: center;
     margin-top: 10px;
+    font-weight: 600;
 }
 
 
