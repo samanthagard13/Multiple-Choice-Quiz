@@ -38,13 +38,20 @@ let clearList = document.getElementById("clearlist");
 function Home() {
     mainMenu.style.display = "block";
     scoreCard.style.display = "none";
-}
+    questionsCard.style.display = "none";
+    highscores.style.display = "block";
+    addScore.style.display = "none";
+    clearInterval(interval);
+    seconds = 60;
+    minutes = 2;
+    timerElement.textContent = "Timer 03:00";
+};
 
 function startQuiz() {
-mainMenu.style.display = "none";
-questionsCard.style.display = "block";
-startTimer();
-nextQuestion();
+    mainMenu.style.display = "none";
+    questionsCard.style.display = "block";
+    startTimer();
+    nextQuestion();
 };
 
 function nextQuestion() {
@@ -103,13 +110,13 @@ function timerFunction() {
         seconds = 59;
         minutes--;
     }
-    if (minutes === 0 && seconds === 0) {
+    if (minutes <= 0 && seconds <= 0) {
         clearInterval(interval);
         addInitials();
         return;
     }
 
-timerElement.textContent = minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0");
+timerElement.textContent = "Timer " + minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0");
 
     if (currentQuestionIndex >= 5) {
         localStorage.setItem("time", timerElement.textContent);
@@ -120,6 +127,7 @@ timerElement.textContent = minutes.toString().padStart(2, "0") + ":" + seconds.t
 };
 
 function addInitials() {
+    clearInterval(interval)
     scoreCard.style.display = "block";
     addScore.style.display = "block";
     timerElement.style.display = "block";
@@ -134,6 +142,10 @@ const timeArray = JSON.parse(localStorage.getItem("timeArray")) || [];
 
 function scoreScreen() {
     event.preventDefault();
+    clearInterval(interval);
+    seconds = 60;
+    minutes = 2;
+    timerElement.textContent = "Timer 03:00";
     console.log("buttonworks");
     scoreCard.style.display = "block";
     highscores.style.display = "block";
@@ -146,7 +158,6 @@ function scoreScreen() {
     timeArray.push(time);
     localStorage.setItem("initialsArray", JSON.stringify(initialsArray));
     localStorage.setItem("timeArray", JSON.stringify(timeArray));
-    timerElement.textContent = "Time Left: " + time;
     initialDisplay.textContent = response + " " + timerElement.textContent;
     localStorage.setItem("initials", response);
     localStorage.setItem("time", time);
@@ -174,7 +185,7 @@ function clearScores () {
     initialsArray.length = 0;
     timeArray.length = 0;
     populateList();
-}
+};
 
 scoreBoard.addEventListener("click", scoreScreen);
 startButton.addEventListener("click", startQuiz);

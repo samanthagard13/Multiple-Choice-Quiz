@@ -1,3 +1,17 @@
+# Multiple Choice Quiz
+
+## Description
+
+This is a timed quiz with four options for each question about basic coding. This project uses HTML, CSS and, JavaScript.
+
+## Usage
+
+Press the start button and do your best, log your initials at the end to add them tothe highscore list.
+
+![Screen Shot] (./Assets/Screenshot.png)
+
+Link : https://samanthagard13.github.io/Multiple-Choice-Quiz/
+
 # 04 Web APIs: Code Quiz
 
 ## Your Task
