@@ -8,7 +8,7 @@ This is a timed quiz with four options for each question about basic coding. Thi
 
 Press the start button and do your best, log your initials at the end to add them tothe highscore list.
 
-![Screen Shot] (./Assets/Screenshot.png)
+![Screen Shot](./Assets/Screenshot.png)
 
 Link : https://samanthagard13.github.io/Multiple-Choice-Quiz/
 
