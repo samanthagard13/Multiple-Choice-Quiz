@@ -11,9 +11,8 @@ let initialsSubmit = document.getElementById("initialssubmit");
 let initialDisplay = document.getElementById("initialdisplay");
 let questionTitle = document.getElementById("questionTitle");
 let questionsCard = document.getElementById("questionscard");
-let seconds = 60;
-let minutes = 2;
-let interval = null;
+let seconds = 100;
+let interval;
 let questionsArray = [
     "Which One Of These Logs To The Console?",
     "Which One Of These Sends Files To GitHub?",
@@ -37,19 +36,19 @@ let frontPage = document.getElementById("frontpage");
 let clearList = document.getElementById("clearlist");
 
 function Home() {
+    currentQuestionIndex = 0;
     mainMenu.style.display = "block";
     scoreCard.style.display = "none";
     questionsCard.style.display = "none";
-    highscores.style.display = "block";
+    highscores.style.display = "none";
     addScore.style.display = "none";
     clearInterval(interval);
-    seconds = 60;
-    minutes = 2;
-    timerElement.textContent = "Timer 03:00";
-    Replay();
+    seconds = 100;
+    timerElement.textContent = "Timer 100";
     function Replay() {
         startButton.addEventListener("click", startQuiz);
     };
+    Replay();
 };
 
 function startQuiz() {
@@ -69,7 +68,7 @@ function nextQuestion() {
         addInitials();
         return;
     }
-    
+
     questionTitle.textContent = questionsArray[currentQuestionIndex];
     choice1.textContent = choice1Array[currentQuestionIndex];
     choice2.textContent = choice2Array[currentQuestionIndex];
@@ -121,40 +120,34 @@ function checkAnswer(event) {
 
 function startTimer() {
     interval = setInterval(timerFunction, 1000);
-
     timerFunction();
 };
 
 function timerFunction() {
+    console.log("timerrr");
     seconds--;
 
     if (seconds <= 0) {
-        seconds = 59;
-        minutes--;
-    } else if (time === 0) {
+        console.log("oooooo");
         clearInterval(interval);
+        seconds = 0;
+        
         addInitials();
         return;
     }
-    
-
-timerElement.textContent = "Timer " + minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0");
-
+timerElement.textContent = "Timer " + seconds;
 };
 
 function addInitials() {
     clearInterval(interval)
+    seconds = 0
     scoreCard.style.display = "block";
     addScore.style.display = "block";
     timerElement.style.display = "block";
     highscores.style.display = "none";
     questionsCard.style.display = "none";
     mainMenu.style.display = "none";
-    initialsSubmit.addEventListener("click", scoreScreen);
-    localStorage.setItem("initials", response);
-    localStorage.setItem("time", time);
-    
-    
+    initialsSubmit.addEventListener("click", scoreScreen);   
 };
 
 const initialsArray = JSON.parse(localStorage.getItem("initialsArray")) || [];
@@ -162,10 +155,10 @@ const timeArray = JSON.parse(localStorage.getItem("timeArray")) || [];
 
 function scoreScreen() {
     event.preventDefault();
+    
     clearInterval(interval);
-    seconds = 60;
-    minutes = 2;
-    timerElement.textContent = "Timer 03:00";
+    seconds = 100;
+    timerElement.textContent = "Timer 100";
     console.log("buttonworks");
     scoreCard.style.display = "block";
     highscores.style.display = "block";
@@ -174,16 +167,26 @@ function scoreScreen() {
     addScore.style.display = "none";
     const time = localStorage.getItem("time");
     let response = initialsInput.value;
+
     initialsArray.push(response);
     timeArray.push(time);
+
     localStorage.setItem("initialsArray", JSON.stringify(initialsArray));
     localStorage.setItem("timeArray", JSON.stringify(timeArray));
+
     initialDisplay.textContent = response + " " + timerElement.textContent;
-      
+    
     populateList();
+
+    initialsInput.value = "";
 };
 
 function populateList() {
+    mainMenu.style.display = "none";
+    questionsCard.style.display = "none";
+    addScore.style.display = "none";
+    scoreCard.style.display = "block";
+    highscores.style.display = "block";
     const scoreList = document.getElementById("scorelist");
     scoreList.innerHTML = "";
 
